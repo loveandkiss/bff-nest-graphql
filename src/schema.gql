@@ -5,6 +5,9 @@
 type Product {
   """Example field (placeholder)"""
   exampleField: Int!
+
+  """产品名称"""
+  name: String!
 }
 
 type Query {
@@ -21,10 +24,16 @@ type Mutation {
 input CreateProductInput {
   """Example field (placeholder)"""
   exampleField: Int!
+
+  """产品名称"""
+  name: String!
 }
 
 input UpdateProductInput {
   """Example field (placeholder)"""
   exampleField: Int
+
+  """产品名称"""
+  name: String
   id: Int!
 }

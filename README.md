@@ -107,3 +107,8 @@ git push -u origin main
 ## 本项目使用 Code First
 
 直接通过代码中的类型和装饰器定义 schema。适合 TypeScript 开发，提供更强的类型安全和自动生成 schema 的便利。
+
+
+## playground 
+
+本服务访问地址 http://127.0.0.1:9000/graphql

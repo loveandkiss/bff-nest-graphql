@@ -11,9 +11,12 @@ export class ProductsService {
   findAll() {
     // return `This action returns all products`;
     return [{
-      exampleField: 10
+      exampleField: 10,
+      name: '苹果手机'
+
     }, {
-      exampleField: 20
+      exampleField: 20,
+      name: '华为手机'
     }]
   }
 
