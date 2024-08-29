@@ -3,8 +3,8 @@
 # ------------------------------------------------------
 
 type Product {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """产品价格"""
+  price: Int!
 
   """产品名称"""
   name: String!
@@ -22,16 +22,16 @@ type Mutation {
 }
 
 input CreateProductInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """产品价格"""
+  price: Int!
 
   """产品名称"""
   name: String!
 }
 
 input UpdateProductInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  """产品价格"""
+  price: Int
 
   """产品名称"""
   name: String
