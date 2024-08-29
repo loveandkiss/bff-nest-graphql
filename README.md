@@ -83,3 +83,22 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+
+
+
+## git关联远程仓库
+
+```bash
+
+# push an existing repository from the command line
+git branch -M main
+git remote add origin https://github.com/loveandkiss/bff-nest-graphql.git
+git push -u origin main
+
+
+# 或者
+git branch -M main
+git remote add origin https://github.com/loveandkiss/bff-nest-graphql.git
+git push -u origin main
+```
