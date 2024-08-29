@@ -110,5 +110,17 @@ git push -u origin main
 
 
 ## playground 
+本服务开启之后，在playground地址栏输入如下地址
+http://127.0.0.1:9000/graphql
 
-本服务访问地址 http://127.0.0.1:9000/graphql
+
+```graphql
+# Write your query or mutation here
+query {
+  product {
+    exampleField
+  }
+}
+
+```
+
