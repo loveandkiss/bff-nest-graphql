@@ -12,7 +12,18 @@ type Product {
   name: String!
 }
 
+type Login {
+  id: Int!
+
+  """登录账户"""
+  username: String!
+
+  """登录密码"""
+  password: String!
+}
+
 type Query {
+  login(id: Int!): Login!
   products: [Product!]!
   product(
     """The ID of the product to find"""
@@ -21,9 +32,29 @@ type Query {
 }
 
 type Mutation {
+  createLogin(createLoginInput: CreateLoginInput!): Login!
+  updateLogin(updateLoginInput: UpdateLoginInput!): Login!
+  removeLogin(id: Int!): Login!
   createProduct(createProductInput: CreateProductInput!): Product!
   updateProduct(updateProductInput: UpdateProductInput!): Product!
   removeProduct(id: Int!): Product!
+}
+
+input CreateLoginInput {
+  """登录账户"""
+  userName: String!
+
+  """登录密码"""
+  password: String!
+}
+
+input UpdateLoginInput {
+  """登录账户"""
+  userName: String
+
+  """登录密码"""
+  password: String
+  id: Int!
 }
 
 input CreateProductInput {
