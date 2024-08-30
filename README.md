@@ -108,10 +108,32 @@ git push -u origin main
 
 直接通过代码中的类型和装饰器定义 schema。适合 TypeScript 开发，提供更强的类型安全和自动生成 schema 的便利。
 
+Nest offers two ways of building GraphQL applications, the code first and the schema first methods. 
+
+You should choose the one that works best for you. 
+
+Most of the chapters in this GraphQL section are divided into two main parts: one you should follow if you adopt code first, and the other to be used if you adopt schema first.
+
+In the code first approach, you use decorators and TypeScript classes to generate the corresponding GraphQL schema.This approach is useful if you prefer to work exclusively with TypeScript and avoid context switching between language syntaxes.
+
+
+- 代码优先（Code First）
+在这种方法中，你从 TypeScript 代码开始，利用装饰器（decorators）来定义 GraphQL 的 schema。
+这种方式更加符合 Nest.js 的编程风格，并且能够充分利用 TypeScript 的类型系统。
+
+- 模式优先（Schema First）
+
+
+
+
 
 ## playground 
 本服务开启之后，在playground地址栏输入如下地址
 http://127.0.0.1:9000/graphql
+
+
+被改成如下访问地址：
+http://127.0.0.1:9000/bff/graphql
 
 
 ```graphql
@@ -124,3 +146,60 @@ query {
 
 ```
 
+
+## @Field()
+
+The @Field() decorator accepts an optional type function (e.g., type => Int), and optionally an options object.
+
+The type function is required when there's the potential for ambiguity between the TypeScript type system and the GraphQL type system. 
+Specifically: it is not required for string and boolean types; it is required for number (which must be mapped to either a GraphQL Int or Float). 
+
+
+
+## 创建或者修改
+
+```graphql
+
+mutation {
+  createProduct(createProductInput: {
+    name: "华为手机",
+    price: 30
+  }) {
+    id,
+    name,
+    price
+  }
+}
+
+```
+
+定义 CreateProductInput: 描述 Mutation 输入参数的结构。
+定义 Product: 描述返回结果的结构。
+
+
+
+
+## 查询
+```graphql
+
+# 不带参数查询
+query {
+  products {
+    id
+    name
+    price
+  }
+}
+
+
+
+# 带参数查询
+query ($id: Int!){
+  product(id: $id) {
+    id
+    name
+    price
+  }
+}
+
+```

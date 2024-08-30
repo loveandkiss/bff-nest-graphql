@@ -3,6 +3,8 @@
 # ------------------------------------------------------
 
 type Product {
+  id: Int!
+
   """产品价格"""
   price: Int!
 
@@ -12,7 +14,10 @@ type Product {
 
 type Query {
   products: [Product!]!
-  product(id: Int!): Product!
+  product(
+    """The ID of the product to find"""
+    id: Int! = 1 @deprecated(reason: "")
+  ): Product!
 }
 
 type Mutation {

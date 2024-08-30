@@ -1,5 +1,10 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
+import {
+  InputType,
+  Int,
+  Field
+} from '@nestjs/graphql';
 
+// 定义创建用户输入类型
 @InputType()
 export class CreateProductInput {
   @Field(() => Int, { description: '产品价格' })
