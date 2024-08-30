@@ -156,6 +156,73 @@ Specifically: it is not required for string and boolean types; it is required fo
 
 
 
+## graphql 与 typeorm 配合使用
+
+GraphQL 可以与 TypeORM 配合使用。TypeORM 是一个 TypeScript 和 JavaScript 的 ORM（对象关系映射）库，用于与数据库交互，而 GraphQL 是一个用于构建 API 的查询语言。结合使用这两个工具可以创建强大的数据驱动应用程序。
+
+
+定义实体[重点]：
+```ts
+
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
+
+@ObjectType()
+@Entity()
+export class Post {
+  @Field(() => Int)
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Field()
+  @Column()
+  title: string;
+
+  @Field()
+  @Column()
+  content: string;
+}
+
+
+```
+
+
+创建 GraphQL 解析器:
+
+```ts
+// 使用 GraphQL 解析器从数据库中获取数据。
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Post } from './post.entity';
+import { CreatePostInput } from './create-post.input';
+
+@Resolver(() => Post)
+export class PostResolver {
+  constructor(
+    @InjectRepository(Post)
+    private readonly postRepository: Repository<Post>,
+  ) {}
+
+  @Query(() => [Post])
+  async posts(): Promise<Post[]> {
+    return this.postRepository.find();
+  }
+
+  @Mutation(() => Post)
+  async createPost(@Args('createPostInput') createPostInput: CreatePostInput): Promise<Post> {
+    const post = this.postRepository.create(createPostInput);
+    return this.postRepository.save(post);
+  }
+}
+
+
+
+```
+
+
+
+
 ## 创建或者修改
 
 ```graphql
